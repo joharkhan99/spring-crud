@@ -24,10 +24,18 @@ public class CruddemoApplication {
 //			createMultipleStudents(studentDAO);
 			
 //			readStudent(studentDAO);
-			queryForStudents(studentDAO);
+//			queryForStudents(studentDAO);
+			getStudentsByLastName(studentDAO);
 		};
 	}
 	
+
+	private void getStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> stuList = studentDAO.findByLastName("Khan");
+		for(Student s: stuList) {
+			System.out.println(s.toString());
+		}
+	}
 
 	private void queryForStudents(StudentDAO studentDAO) {
 		List<Student> students = studentDAO.findAllStudents();
