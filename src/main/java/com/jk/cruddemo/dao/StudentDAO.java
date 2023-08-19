@@ -11,5 +11,8 @@ public interface StudentDAO {
 	List<Student> findAllStudents();
 	List<Student> findByLastName(String lastName);
 	void updateStudent(Student thStudent);
+	void updateAllStudents();
+	void deleteStudent(int id);
+	void deleteMultipleStudents();
 
 }

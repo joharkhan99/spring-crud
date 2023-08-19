@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jk.cruddemo.entity.Student;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 //Repository a specialization of @Component annotation 
@@ -65,6 +66,23 @@ public class StudentDAOImplement implements StudentDAO {
 		entityManager.merge(thStudent);
 	}
 
+	@Override
+	@Transactional
+	public void updateAllStudents() {
+		int numRowsUpdated = entityManager.createQuery("UPDATE Student SET lastName='Dough'").executeUpdate();
+		System.out.println("Total Rows updated: "+numRowsUpdated);
+	}
 
+	@Override
+	@Transactional
+	public void deleteStudent(int id) {
+		Student theStudent = entityManager.find(Student.class, id);
+		entityManager.remove(theStudent);
+	}
+
+	@Override
+	public void deleteMultipleStudents() {
+		entityManager.createQuery("DELETE FROM Student WHERE lastName LIKE '%Dou%'").executeUpdate();
+	}
 	
 }
